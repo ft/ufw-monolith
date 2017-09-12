@@ -1,0 +1,39 @@
+#!/bin/sh
+
+mode="$1"
+shift
+
+_build_ () {
+    task="$1"
+    case "$task" in
+    googletest)
+        (cd googletest && mkdir -p build &&
+             cd build && cmake .. && make;)
+        ;;
+    *) printf 'Error. TODO: Documentation.\n' ;;
+    esac
+}
+
+_initandupdate_ () {
+    module="$1"
+    case "$module" in
+    googletest|gtest-tap-listener|ufw)
+        git submodule update --init "$module"
+        ;;
+    *) printf 'Error. TODO: Documentation.\n' ;;
+    esac
+}
+
+case "$mode" in
+build)
+    for task in "$@"; do
+        _build_ "$task"
+    done
+    ;;
+submodules)
+    for module in "$@"; do
+        _initandupdate_ "$module"
+    done
+;;
+*) printf 'Error. TODO: Documentation.\n' ;;
+esac
