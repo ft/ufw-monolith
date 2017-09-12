@@ -1,0 +1,9 @@
+[submodule "ufw"]
+	path = ufw
+	url = ../ufw
+[submodule "googletest"]
+	path = googletest
+	url = https://github.com/google/googletest
+[submodule "gtest-tap-listener"]
+	path = gtest-tap-listener
+	url = https://github.com/kinow/gtest-tap-listener
