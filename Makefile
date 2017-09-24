@@ -1,7 +1,8 @@
 SH = /bin/sh
 
-SUBMODULES_TEST = googletest gtest-tap-listener
+SUBMODULES_TEST = libtap googletest gtest-tap-listener
 SUBMODULES_LIBRARIES = ufw
+BUILD_MODULES = libtap googletest
 
 all: prepare-submodules-test
 all: prepare-tests
@@ -12,7 +13,7 @@ insinuate-clang-format:
 	ln -sf ufw/.clang-format .clang-format
 
 prepare-tests:
-	$(SH) ./prepare build googletest
+	$(SH) ./prepare build $(BUILD_MODULES)
 
 prepare-submodules-test:
 	$(SH) ./prepare submodules $(SUBMODULES_TEST)

@@ -10,6 +10,9 @@ _build_ () {
         (cd googletest && mkdir -p build &&
              cd build && cmake .. && make;)
         ;;
+    libtap)
+        (cd libtap && make;)
+        ;;
     *) printf 'Error. TODO: Documentation.\n' ;;
     esac
 }
@@ -17,7 +20,7 @@ _build_ () {
 _initandupdate_ () {
     module="$1"
     case "$module" in
-    googletest|gtest-tap-listener|ufw)
+    libtap|googletest|gtest-tap-listener|ufw)
         git submodule update --init "$module"
         ;;
     *) printf 'Error. TODO: Documentation.\n' ;;
