@@ -1,6 +1,6 @@
 [submodule "ufw"]
 	path = ufw
-	url = ../ufw
+	url = https://github.com/ft/ufw.git
 [submodule "googletest"]
 	path = googletest
 	url = https://github.com/google/googletest
