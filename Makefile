@@ -5,7 +5,7 @@ SUBMODULES_LIBRARIES = ufw
 BUILD_MODULES = libtap googletest
 
 all:
-	@printf 'Available frontend targets: prepare test\n'
+	@printf 'Available frontend targets: prepare clean test\n'
 
 prepare: prepare-submodules-test
 prepare: prepare-tests
