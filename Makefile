@@ -10,7 +10,7 @@ all: prepare-submodules-libraries
 all: insinuate-clang-format
 
 insinuate-clang-format:
-	ln -sf ufw/.clang-format .clang-format
+	test -e .clang-format || ln -sf ufw/.clang-format .clang-format
 
 prepare-tests:
 	$(SH) ./prepare build $(BUILD_MODULES)
