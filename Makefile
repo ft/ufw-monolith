@@ -8,6 +8,7 @@ all: prepare-submodules-test
 all: prepare-tests
 all: prepare-submodules-libraries
 all: insinuate-clang-format
+all: configure-ufw
 
 insinuate-clang-format:
 	test -e .clang-format || ln -sf ufw/.clang-format .clang-format
@@ -21,6 +22,16 @@ prepare-submodules-test:
 prepare-submodules-libraries:
 	$(SH) ./prepare submodules $(SUBMODULES_LIBRARIES)
 
+configure-ufw:
+	$(MAKE) -C ufw config
+
+test:
+	$(MAKE) test-ufw
+
+test-ufw: configure-ufw
+	$(MAKE) -C ufw/test test
+
 .PHONY: insinuate-clang-format prepare-tests prepare-submodules-test
 .PHONY: prepare-submodules-libraries
-.PHONY: all
+.PHONY: configure-ufw test-ufw
+.PHONY: all test
