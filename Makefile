@@ -4,11 +4,14 @@ SUBMODULES_TEST = libtap googletest gtest-tap-listener
 SUBMODULES_LIBRARIES = ufw
 BUILD_MODULES = libtap googletest
 
-all: prepare-submodules-test
-all: prepare-tests
-all: prepare-submodules-libraries
-all: insinuate-clang-format
-all: configure-ufw
+all:
+	@printf 'Available frontend targets: prepare test\n'
+
+prepare: prepare-submodules-test
+prepare: prepare-tests
+prepare: prepare-submodules-libraries
+prepare: insinuate-clang-format
+prepare: configure-ufw
 
 insinuate-clang-format:
 	test -e .clang-format || ln -sf ufw/.clang-format .clang-format
@@ -31,7 +34,13 @@ test:
 test-ufw: configure-ufw
 	$(MAKE) -C ufw/test test
 
+clean:
+	$(MAKE) -C ufw clean
+	$(MAKE) -C libtap clean
+	$(MAKE) -C googletest/build clean
+	rm -f *~ "#"*"#"
+
 .PHONY: insinuate-clang-format prepare-tests prepare-submodules-test
 .PHONY: prepare-submodules-libraries
 .PHONY: configure-ufw test-ufw
-.PHONY: all test
+.PHONY: all clean prepare test
