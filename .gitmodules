@@ -2,11 +2,11 @@
 	path = ufw
 	url = https://github.com/ft/ufw.git
 [submodule "googletest"]
-	path = googletest
+	path = test/googletest
 	url = https://github.com/google/googletest
 [submodule "gtest-tap-listener"]
-	path = gtest-tap-listener
+	path = test/gtest-tap-listener
 	url = https://github.com/kinow/gtest-tap-listener
 [submodule "libtap"]
-	path = libtap
+	path = test/libtap
 	url = https://github.com/zorgnax/libtap.git
