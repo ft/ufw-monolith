@@ -22,3 +22,4 @@ GRTAGS
 GSYMS
 GTAGS
 test/*.t
+build
