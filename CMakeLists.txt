@@ -1,12 +1,22 @@
-cmake_minimum_required (VERSION 3.1.0)
-project(ufw C CXX)
+cmake_minimum_required (VERSION 3.9.0)
+project(ufw NONE)
 
-include(CTest)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/ufw/cmake/modules)
+include(SetupUFW)
 
-set(EMBEDDED_CMAKE "${CMAKE_CURRENT_SOURCE_DIR}/ufw/cmake/modules")
-list(APPEND CMAKE_MODULE_PATH "${EMBEDDED_CMAKE}")
+ufw_toplevel(
+  ROOT      ${CMAKE_SOURCE_DIR}/ufw
+  ARTIFACTS ${CMAKE_BINARY_DIR}/artifacts)
 
-include(Libtap)
-add_libtap("${CMAKE_CURRENT_SOURCE_DIR}/test/libtap")
+ufw_add_board(posix
+  TOOLCHAINS gnu clang
+  BUILDTYPES Release Debug
+  BUILDSYSTEM build-posix.cmake)
 
-add_subdirectory(ufw)
+ufw_add_board(micro
+  TOOLCHAINS gnu-arm-none-eabi
+  BUILDTYPES Release Debug
+  BUILDSYSTEM build-micro.cmake)
+
+ufw_recursive_dispatch()
+ufw_subtree_build()
